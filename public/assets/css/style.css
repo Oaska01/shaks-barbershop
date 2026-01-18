@@ -1,0 +1,9 @@
+.nav-link
+{
+    text-decoration: none;
+    color: gray;
+}
+
+a:hover {
+  color: #2980b9;
+}
