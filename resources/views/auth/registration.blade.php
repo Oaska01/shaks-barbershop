@@ -43,7 +43,7 @@
           <label for="exampleInputPassword1" class="form-label">Phone Number</label>
           <input
             type="text"
-            name = "phoneNumber"
+            name = "phone_number"
             class="form-control"
             id="exampleInputPhoneNumber"/>
         </div>

@@ -17,14 +17,14 @@
     </div>
   </div>
 
-  <div class="container-fluid">
-    <ul class="navbar-nav">
-        <li class="nav-item">
+    <div class="d-flex align-items-center justify-content-between">
+        @guest
             <a class="btn btn-primary me-2" href="{{ route('registration.view') }}">Signup</a>
-        </li>
-        <li class="nav-item">
             <a class="btn btn-primary me-2" href="{{ route('login.view') }}">Login</a>
-        </li>
-    </ul>
+        @endguest
+
+        @auth
+             <a class="btn btn-primary me-2" href="{{ route('logout') }}">Logout</a>
+        @endauth
   </div>
 </nav>

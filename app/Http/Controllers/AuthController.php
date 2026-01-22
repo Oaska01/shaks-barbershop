@@ -19,8 +19,9 @@ class AuthController extends Controller
         $fields = $request -> validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone_number' => ['required', 'string','unique:users,phone_number'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'phone' => ['required', 'unique:users,phone'],
+            'policy' => 'accepted'
         ]);
 
         $user = User::create($fields);
@@ -37,6 +38,26 @@ class AuthController extends Controller
     //Post Login
     function login(Request $request)
     {
+        $fields = $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+        ]);
 
+        if (Auth::attempt($fields))
+            {
+                return redirect()->route('index');
+            }
+
+            return back() ->withErrors([
+                'email' => 'The Provided Credentials Do Not Match The Records!'
+            ]);
+
+            return redirect()->back()->with('error', 'Invalid Credentials');
+    }
+
+    function logout()
+    {
+        Auth::logout();
+        return redirect()->route('index');
     }
 }
