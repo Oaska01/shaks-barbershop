@@ -16,16 +16,6 @@
             <h2 class="text-center mb-3">Shaks Barbershop</h2>
             <p class="text-center text-muted mb-4">Sign in to your account</p>
 
-            {{-- Error messages --}}
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
 
             {{-- Session status --}}
             @if (session('status'))
@@ -85,7 +75,15 @@
                 </div> --}}
 
             </form>
-
+            @if ($errors->any())
+                <div class="mt-3 alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         </div>
     </div>
 </div>

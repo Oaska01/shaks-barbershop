@@ -49,7 +49,7 @@ class AuthController extends Controller
             }
 
             return back() ->withErrors([
-                'email' => 'The Provided Credentials Do Not Match The Records!'
+                'credentialError' => 'The Provided Credentials Do Not Match The Records!'
             ]);
 
             return redirect()->back()->with('error', 'Invalid Credentials');
