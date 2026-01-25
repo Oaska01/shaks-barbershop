@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 
@@ -20,3 +22,18 @@ Route::middleware('auth') ->group(function()
 {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+// Admin
+Route::middleware('auth', 'role:admin') ->group(function()
+{
+    Route::get('/admin-home', [AdminController::class, 'adminHome']) -> name('admin.home');
+    Route::get('/products', [AdminController::class, 'adminHome']) -> name('admin.home');
+});
+// User
+
+Route::middleware('auth','role:user') -> group(function()
+    {
+        Route::get('/user-home', [UserController::class, 'userHome'])->name('user.home');
+    }
+
+);

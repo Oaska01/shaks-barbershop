@@ -5,6 +5,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    @auth
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -15,7 +16,14 @@
         </li>
       </ul>
     </div>
+
+    <div class='name'>
+        <span>Hello {{Auth::user()->name}}</span>
   </div>
+    @endauth
+
+  </div>
+
 
     <div class="d-flex align-items-center justify-content-between">
         @guest
@@ -25,6 +33,8 @@
 
         @auth
              <a class="btn btn-primary me-2" href="{{ route('logout') }}">Logout</a>
+             <a class="btn btn-primary me-2" href="{{ route('admin.home') }}">Admin</a>
+             <a class="btn btn-primary me-2" href="{{ route('user.home') }}">User</a>
         @endauth
   </div>
 </nav>
