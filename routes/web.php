@@ -27,7 +27,9 @@ Route::middleware('auth') ->group(function()
 Route::middleware('auth', 'role:admin') ->group(function()
 {
     Route::get('/admin-home', [AdminController::class, 'adminHome']) -> name('admin.home');
-    Route::get('/products', [AdminController::class, 'adminHome']) -> name('admin.home');
+    Route::get('/admin-products', [AdminController::class, 'adminHome']) -> name('admin.products');
+    Route::get('/admin-users', [AdminController::class, 'users']) -> name('admin.users');
+    Route::post('/admin/user/{user}/delete', [AdminController::class, 'deleteUser']) -> name('admin.delete');
 });
 // User
 

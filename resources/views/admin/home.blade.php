@@ -56,7 +56,7 @@
                                 <p class="text-muted small">
                                     View registered users and their activity.
                                 </p>
-                                <a href="/admin/users" class="btn btn-sm btn-dark">
+                                <a href="{{ route('admin.users') }}" class="btn btn-sm btn-dark">
                                     Manage Users
                                 </a>
                             </div>
