@@ -30,6 +30,8 @@ Route::middleware('auth', 'role:admin') ->group(function()
     Route::get('/admin-products', [AdminController::class, 'adminHome']) -> name('admin.products');
     Route::get('/admin-users', [AdminController::class, 'users']) -> name('admin.users');
     Route::post('/admin/user/{user}/delete', [AdminController::class, 'deleteUser']) -> name('admin.delete');
+    Route::post('/admin/user/{user}/soft-delete', [AdminController::class, 'softDeleteUser']) -> name('admin.softDelete');
+    Route::post('/admin/user/{id}/restore', [AdminController::class, 'restoreUser']) -> name('admin.restore');
 });
 // User
 

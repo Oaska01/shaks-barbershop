@@ -30,4 +30,9 @@ class AdminController extends Controller
         $user->delete();
         return back()->with('success','User Deleted Successfully');
     }
+
+    public function restoreUser(User $id)
+    {
+        
+    }
 }

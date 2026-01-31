@@ -1,7 +1,7 @@
 <x-layout>
 
     @if (session('success'))
-        <p>{{session('success')}}</p>
+        <p style="color: green">{{session('success')}}</p>
     @endif
 
     <div class="m-4">
@@ -35,11 +35,18 @@
                                 <button class="btn btn-danger">Delete</button>
                             </form>
                         </td>
-                        {{-- add --}}
+                        {{-- Soft Delete --}}
                         <td>
-                            {{-- <form action="POST">
-                                <button class="btn btn-primary">Add</button>
-                            </form> --}}
+                            <form action="{{ route('admin.softDelete', $user->id) }}" method="POST">
+                                @csrf
+                                <button class="btn btn-danger">Soft Delete</button>
+                            </form>
+                        </td>
+                        {{-- restore --}}
+                        <td>
+                            <form action="admin.restore" method="POST">
+                                <button class="btn btn-primary">Restore</button>
+                            </form>
                         </td>
                     </tr>
 
