@@ -41,7 +41,7 @@
                                 <p class="text-muted small">
                                     Control pricing and availability of products.
                                 </p>
-                                <a href="/admin/products" class="btn btn-sm btn-dark">
+                                <a href="{{ route('admin.products.home') }}" class="btn btn-sm btn-dark">
                                     Manage Products
                                 </a>
                             </div>

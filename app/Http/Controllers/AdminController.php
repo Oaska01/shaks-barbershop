@@ -33,6 +33,6 @@ class AdminController extends Controller
 
     public function restoreUser(User $id)
     {
-        
+
     }
 }

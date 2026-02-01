@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 
@@ -27,11 +28,14 @@ Route::middleware('auth') ->group(function()
 Route::middleware('auth', 'role:admin') ->group(function()
 {
     Route::get('/admin-home', [AdminController::class, 'adminHome']) -> name('admin.home');
-    Route::get('/admin-products', [AdminController::class, 'adminHome']) -> name('admin.products');
     Route::get('/admin-users', [AdminController::class, 'users']) -> name('admin.users');
     Route::post('/admin/user/{user}/delete', [AdminController::class, 'deleteUser']) -> name('admin.delete');
     Route::post('/admin/user/{user}/soft-delete', [AdminController::class, 'softDeleteUser']) -> name('admin.softDelete');
     Route::post('/admin/user/{id}/restore', [AdminController::class, 'restoreUser']) -> name('admin.restore');
+    // products
+    Route::get('/admin-products', [ProductController::class, 'productHome']) -> name('admin.products.home');
+    Route::get('admin/products/create', [ProductController::class, 'productCreateView'])->name('admin.product.create.view');
+    Route::post('admin/products/create', [ProductController::class, 'productCreate'])->name('admin.product.create');
 });
 // User
 
