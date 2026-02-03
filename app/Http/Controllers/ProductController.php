@@ -28,7 +28,7 @@ class ProductController extends Controller
                         ],
             'stock' => ['required', 'integer', 'min:0'],
             'category' => ['required', 'string', 'max:255'],
-            'description' => ['string', 'max:1000'],
+            'description' => ['nullable','string', 'max:1000'],
         ]);
 
         if ($product = Product::create($fileds))

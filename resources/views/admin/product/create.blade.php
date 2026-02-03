@@ -41,6 +41,10 @@
             <button type="submit" class="btn btn-dark">
                 Save Product
             </button>
+
+            <a href="{{ route('admin.products.home') }}" class="btn btn-primary">
+                Add Product
+            </a>
         </form>
         @if ($errors->any())
                 <div class="mt-3 alert alert-danger">
