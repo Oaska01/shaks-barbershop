@@ -37,7 +37,7 @@
                         </td>
                         {{-- Soft Delete --}}
                         <td>
-                            <form action="{{ route('admin.softDelete', $user->id) }}" method="POST">
+                            <form action="{{ route('admin.delete', $user->id) }}" method="POST">
                                 @csrf
                                 <button class="btn btn-danger">Soft Delete</button>
                             </form>

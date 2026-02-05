@@ -44,12 +44,31 @@ class ProductController extends Controller
     public function products()
     {
         $products = Product::all();
-        return view('admin.product.home', compact('products'));
+        // to return all the deleted products
+        $deletedProducts = Product::onlyTrashed()->get();
+        // return the deleted and non deleted users
+        $allProducts = Product::withTrashed()->get();
+        return view('admin.product.home', compact('products', 'deletedProducts'));
     }
 
     public function productDelete(Product $product)
     {
         $product->delete();
-        return view('admin.product.home');
+        return back()-> with('success', 'Product Successfully Deleted');
+    }
+
+    function productRestore($id)
+    {
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->restore();
+        return back()->with('success', 'Product Restored Successfullt');
+    }
+
+    function forceDelete($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+        $product->forceDelete();
+
+        return back()->with('success', 'Product Permanently Deleted');
     }
 }

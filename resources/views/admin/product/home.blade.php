@@ -43,47 +43,6 @@
                         </thead>
 
                         <tbody>
-                            {{-- @forelse ($products as $product)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td class="fw-semibold">
-                                        {{ $product->name }}
-                                    </td>
-                                    <td>
-                                        {{ $product->category ?? '-' }}
-                                    </td>
-                                    <td>
-                                        {{ number_format($product->price, 2) }}
-                                    </td>
-                                    <td>
-                                        <span class="badge
-                                            {{ $product->stock > 0 ? 'bg-success' : 'bg-danger' }}">
-                                            {{ $product->stock }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        {{ $product->created_at->format('d M Y') }}
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="#"
-                                           class="btn btn-sm btn-outline-primary">
-                                            Edit
-                                        </a>
-
-                                        <button class="btn btn-sm btn-outline-danger"
-                                                disabled>
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7"
-                                        class="text-center text-muted">
-                                        No products found.
-                                    </td>
-                                </tr>
-                            @endforelse --}}
 
                             @foreach ($products as $product)
                                 <tr>
@@ -99,6 +58,13 @@
                                             <button>Delete</button>
                                         </form>
                                     </td>
+                                    {{-- force delete --}}
+                                    <td>
+                                        <form action="{{route('admin.product.forceDelete', $product->id)}}" method="POST">
+                                            @csrf
+                                            <button>Force Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -110,5 +76,49 @@
 
         </div>
     </section>
+    {{-- deleted products list --}}
+<h2 class="mb-4 deletedProduct">Deleted Products</h2>
+
+<section class="py-5">
+    <div class="container">
+
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @forelse ($deletedProducts as $deletedProduct)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $deletedProduct->name }}</td>
+                        <td class="text-center">
+                            <form method="POST"
+                                  action="{{ route('admin.product.restore', $deletedProduct->id) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-success">
+                                    Restore
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">
+                            No deleted products found.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+
+        </table>
+
+    </div>
+</section>
+
 
 </x-layout>
