@@ -33,13 +33,12 @@
                     <table class="table table-bordered table-hover align-middle">
                         <thead class="table-light">
                             <tr>
-                                <th>#</th>
+                                <th>ID</th>
                                 <th>Name</th>
-                                <th>Category</th>
                                 <th>Price ($)</th>
                                 <th>Stock</th>
-                                <th>Added</th>
-                                <th class="text-center">Actions</th>
+                                <th>Category</th>
+                                <th class="text-center">Description</th>
                             </tr>
                         </thead>
 
@@ -85,6 +84,23 @@
                                     </td>
                                 </tr>
                             @endforelse --}}
+
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td>{{ $product->id }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td>{{ $product->category }}</td>
+                                    <td>{{ $product->description }}</td>
+                                    <td>
+                                        <form action="{{route('admin.product.delete', $product->id)}}" method="POST">
+                                            @csrf
+                                            <button>Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
 
                     </table>

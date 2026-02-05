@@ -44,7 +44,7 @@
                         </td>
                         {{-- restore --}}
                         <td>
-                            <form action="admin.restore" method="POST">
+                            <form action="{{ route ('admin.restore', $user->id)}}" method="POST">
                                 <button class="btn btn-primary">Restore</button>
                             </form>
                         </td>

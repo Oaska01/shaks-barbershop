@@ -39,7 +39,17 @@ class ProductController extends Controller
         return back()->withErrors([
             'error', 'Failed To Add Product'
         ]);
+    }
 
+    public function products()
+    {
+        $products = Product::all();
+        return view('admin.product.home', compact('products'));
+    }
 
+    public function productDelete(Product $product)
+    {
+        $product->delete();
+        return view('admin.product.home');
     }
 }
