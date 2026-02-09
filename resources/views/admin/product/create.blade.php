@@ -43,7 +43,7 @@
             </button>
 
             <a href="{{ route('admin.products.home') }}" class="btn btn-primary">
-                Add Product
+                Product Table
             </a>
         </form>
         @if ($errors->any())
