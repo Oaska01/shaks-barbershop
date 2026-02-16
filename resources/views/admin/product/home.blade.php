@@ -9,11 +9,17 @@
                     Manage barber equipment and supplies
                 </p>
             </div>
+            <div class= "d-flex gap-2">
+                <a href="{{ route('admin.product.create.view') }}"
+                class="btn btn-light">
+                    + Add Product
+                </a>
 
-            <a href="{{ route('admin.product.create.view') }}"
-               class="btn btn-light">
-                + Add Product
-            </a>
+                <a href="{{ route('admin.category.add') }}"
+                class="btn btn-light">
+                    + Add Category
+                </a>
+            </div>
         </div>
     </section>
 

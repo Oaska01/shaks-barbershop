@@ -4,18 +4,18 @@ namespace App\Models;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ProductImage extends Model
+class category extends Model
 {
-    public $timestamps = false;
+    use SoftDeletes;
 
     protected $fillable=[
-        'product_id',
-        'image'
+        'name'
     ];
 
     public function product()
     {
-        return $this -> belongsTo(Product::class);
+        return $this->belongsToMany(Product::class);
     }
 }

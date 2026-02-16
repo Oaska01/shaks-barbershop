@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', [MainController::class, 'index'])->name('index');
@@ -38,6 +39,11 @@ Route::middleware('auth', 'role:admin') ->group(function()
     Route::post('admin/product/{product}/delete', [ProductController::class, 'productDelete'])->name('admin.product.delete');
     Route::post('admin/product/{id}/restore', [ProductController::class, 'productRestore'])->name('admin.product.restore');
     Route::post('admin/product/{id}/forceDelete', [ProductController::class, 'forceDelete'])->name('admin.product.forceDelete');
+    // category
+
+    Route::get('admin/category/create', [CategoryController::class, 'viewCategory'])->name('admin.category.view');
+    Route::post('admin/category/create', [CategoryController::class, 'addCategories'])->name('admin.category.add');
+    Route::post('admin/category/{category}/delte', [CategoryController::class, 'deleteCategories'])->name('admin.category.delete');
 });
 // User
 
