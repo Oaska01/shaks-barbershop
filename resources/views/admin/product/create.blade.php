@@ -19,8 +19,24 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Category</label>
-                <input type="text" name="category" class="form-control" placeholder="Blade, Wax, Gel">
+                <label for="categories" class="form-label fw-semibold">
+                    Categories
+                </label>
+
+                <select name="categories[]"
+                        id="categories"
+                        class="form-select @error('categories') is-invalid @enderror"
+                        multiple
+                        required>
+
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">
+                                {{ collect(old('categories'))->contains($category->id) ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+
+                </select>
             </div>
 
             <div class="mb-3">
@@ -64,15 +80,7 @@
                 Product Table
             </a>
         </form>
-        @if ($errors->any())
-                <div class="mt-3 alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
     </div>
 </section>
 

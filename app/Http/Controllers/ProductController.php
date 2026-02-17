@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     function productHome()
     {
-        return view('admin.product.home');
+        $categories = Category::orderBy('name')->get();
+        return view('admin.product.home', compact('categories'));
     }
 
     function productCreateView()
     {
-        return view('admin.product.create');
+        $categories = Category::orderBy('name')->get();
+        return view('admin.product.create', compact('categories'));
     }
 
     function productCreate(Request $request)
@@ -49,7 +52,10 @@ class ProductController extends Controller
         $deletedProducts = Product::onlyTrashed()->get();
         // return the deleted and non deleted users
         $allProducts = Product::withTrashed()->get();
-        return view('admin.product.home', compact('products', 'deletedProducts'));
+        // categories
+        $categories = Category::orderBy('name')->get();
+
+        return view('admin.product.home', compact('products', 'deletedProducts', 'categories'));
     }
 
     public function productDelete(Product $product)
